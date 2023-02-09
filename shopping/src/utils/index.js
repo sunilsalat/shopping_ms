@@ -49,3 +49,11 @@ module.exports.FormateData = (data) => {
     throw new Error("Data Not found!");
   }
 };
+
+module.exports.PublishProductEvents = async (payload) => {
+  //
+};
+
+module.exports.PublishCustomerEvent = async (payload) => {
+  //
+};

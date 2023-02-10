@@ -66,3 +66,6 @@ sudo service nginx restart
 
 
 *******node app running on nginx*******
+
+
+rabbitmq installationguide ---- https://www.cherryservers.com/blog/how-to-install-and-start-using-rabbitmq-on-ubuntu-22-04

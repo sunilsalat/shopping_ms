@@ -5,8 +5,9 @@ const amqplib = require("amqplib");
 const {
   APP_SECRET,
   EXCHANGE_NAME,
-  SHOPPING_SERVICE,
-  MSG_QUEUE_URL,
+  SHOPPING_BINDING_KEY,
+  MESSAGE_BROKER_URL,
+
 } = require("../config");
 
 //Utility functions
@@ -60,7 +61,7 @@ module.exports.FormateData = (data) => {
 
 module.exports.CreateChannel = async () => {
   try {
-    const connection = await amqplib.connect(MSG_QUEUE_URL);
+    const connection = await amqplib.connect(MESSAGE_BROKER_URL);
     const channel = await connection.createChannel();
     await channel.assertQueue(EXCHANGE_NAME, "direct", { durable: true });
     return channel;
@@ -79,7 +80,7 @@ module.exports.SubscribeMessage = async (channel, service) => {
   const q = await channel.assertQueue("", { exclusive: true });
   console.log(` Waiting for messages in queue: ${q.queue}`);
 
-  channel.bindQueue(q.queue, EXCHANGE_NAME, SHOPPING_SERVICE);
+  channel.bindQueue(q.queue, EXCHANGE_NAME, SHOPPING_BINDING_KEY);
 
   channel.consume(
     q.queue,

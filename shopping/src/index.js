@@ -8,6 +8,8 @@ require('dotenv').config()
 const StartServer = async() => {
 
     const app = express();
+    console.log(process.env.MONGODB_URI, 'is mongo uri>>>>')
+
     
     await databaseConnection(process.env.MONGODB_URI);
 

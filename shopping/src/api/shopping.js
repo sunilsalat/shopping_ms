@@ -1,7 +1,7 @@
 const ShoppingService = require("../services/shopping-service");
 const { PublishCustomerEvent, SubscribeMessage } = require("../utils");
 const  UserAuth = require('./middlewares/auth');
-const { CUSTOMER_SERVICE, CUSTOMER_BINDING_KEY } = require('../config');
+const {  CUSTOMER_BINDING_KEY } = require('../config');
 const { PublishMessage } = require('../utils')
 
 module.exports = (app, channel) => {

@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const amqplib = require("amqplib");
-require("dotenv").config()
+require("dotenv").config();
 
 const { APP_SECRET, MESSAGE_BROKER_URL, EXCHANGE_NAME, QUEUE_NAME } = require("../config");
 
@@ -48,7 +48,6 @@ module.exports.FormateData = (data) => {
   }
 };
 
-
 // message broker
 module.exports.CreateChannel = async () => {
   try {
@@ -56,15 +55,6 @@ module.exports.CreateChannel = async () => {
     const channel = await connection.createChannel();
     await channel.assertExchange(EXCHANGE_NAME, "direct", false);
     return channel;
-  } catch (error) {
-    throw error;
-  }
-};
-
-// sender
-module.exports.PublishMessage = async (channel, binding_key, message) => {
-  try {
-    await channel.publish(EXCHANGE_NAME, binding_key, Buffer.from(message));
   } catch (error) {
     throw error;
   }
